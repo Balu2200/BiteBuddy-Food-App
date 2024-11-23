@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+import { USER_API } from "../utils/constants";
 
-const User = (props) =>{
+const User = ({userID}) =>{
+
+    const [userData, setuserData] = useState(null);
+    useEffect(() =>{
+        getUserData(userID);
+    },[userID])
+
+    async function getUserData(userID) {
+        const data = await fetch(USER_API+userID);
+        const json = await data.json();
+        setuserData(json);
+    }
+
+    if (userData == null){
+        return(
+            <Shimmer/>
+        )
+    }
+
+    const {name,company,blog,avatar_url}= userData;
     
     return (
         <div className="user-card">
-            <h3> Name     : {props.name}</h3>
-            <h3> Location : Visakhapatnam</h3>
-            <h3> Contact  : balupasumarthi1@gmail.com</h3>
+            <img src ={avatar_url} alt="User_Image" />
+            <h3> Name   : {name}</h3>
+            <h3> Company: {company}</h3>
+            <h3> Blog   : {blog}</h3>
         </div>
     );
 };

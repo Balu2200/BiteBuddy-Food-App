@@ -1,5 +1,5 @@
 import React from "react";
-
+import { USER_API } from "../utils/constants";
 
 class UserClass extends React.Component{
 
@@ -7,26 +7,41 @@ class UserClass extends React.Component{
         super(props);
 
         this.state ={
-            count : 0,
+            useInfo :{
+                name : "Dummy",
+                company :"Default",
+                blog :'dummy'
+            }
         }
     };
 
+    async componentDidMount(){
+        const data = await fetch(USER_API + "Balu2200");
+        const json = await data.json();
+        
+        this.setState({
+            useInfo : json
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log("Updated");
+    }
+
+    componentWillUnmount(){
+        console.log("component unmounted");
+    }
+
     render(){
 
-        const {name, location} = this.props;
-        const { count }  = this.state;
+        const { name, company, blog,avatar_url}  = this.state.useInfo;
+
 
         return(
             <div className="contact">
-                <h2> Count    : {count}</h2>
-                <button onClick={() =>{
-                    this.setState({
-                        count: this.state.count+1,
-                    })
-                }}>Count Increase</button>
                 <h2>Name      : {name}</h2>
-                <h2>Location  : {location}</h2>
-                <h3>Mail      : balupasumarthi1@gmail.com </h3>
+                <h2>Company  : {company}</h2>
+                <h3>Website     : {blog}</h3>
             </div>
         );
     };

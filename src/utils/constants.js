@@ -4,3 +4,4 @@ export const LOGO_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ
 
 export const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.37240&lng=78.43780&restaurantId=";
 
+export const USER_API = "https://api.github.com/users/";
