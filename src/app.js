@@ -10,19 +10,23 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Body from "./components/body";
 import { Suspense } from "react";
-import Shimmer from "./components/Shimmer";
-// import Grocery from "./components/Grocery";
+
 
 
 const Grocery = lazy( () => import("./components/Grocery") );
 
 const AppLayout = () => {
     return (
-        <div className="app">
+        <div className="flex flex-col min-h-screen bg-gray-50">
             <Header />
-            <Outlet />
+            <main className="flex-grow p-4 md:p-8">
+                <Outlet />
+            </main>
+            <footer className="bg-blue-600 text-white text-center py-4">
+                <p>&copy; 2024 BiteBuddy. All rights reserved.</p>
+            </footer>
         </div>
-    )
+    );
 };
 
 
@@ -56,7 +60,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:'/grocery',
-                element:<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>
+                element:<Suspense fallback={<h1>Loading</h1>}><Grocery/></Suspense>
             }
         ],
         errorElement:<Error/>
