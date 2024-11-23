@@ -6,7 +6,7 @@ const RestaurantCard = (props) => {
 
     return (
         <div
-            className="m-3 p-3 w-[250px] h-[350px] rounded-xl shadow-xl flex flex-col justify-between"
+            className="m-3 p-3 w-[250px] h-[350px] rounded-xl shadow-xl flex flex-col justify-between hover:bg-gray-200 transition-all duration-300"
             style={{ backgroundColor: "#f0f0f0" }}
         >
             <img
@@ -14,9 +14,9 @@ const RestaurantCard = (props) => {
                 alt="res-logo"
                 src={CDN_URL + cloudinaryImageId}
             />
-            <div>
+            <div className="p-4">
                 <h4 className="font-semibold text-lg">{name}</h4>
-                <h3 className="text-gray-600">Rating: {avgRating} ⭐</h3>
+                <h3 className="font-semibold text-lg text-gray-600">Rating: {avgRating} ⭐</h3>
                 <h3 className="text-gray-600 truncate">Cuisines: {cuisines.join(", ")}</h3>
                 <h3 className="text-gray-800">Cost for Two: {costForTwo}</h3>
             </div>

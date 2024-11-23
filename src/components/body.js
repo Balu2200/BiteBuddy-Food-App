@@ -51,7 +51,7 @@ const Body = () => {
 
           <div className="search m-3 p-2 flex items-center">
             <button className="px-4 py-2 flex items-center gap-2 border border-black shadow-lg bg-cyan-500 text-white font-medium rounded-lg transition-all duration-300 ease-in-out hover:bg-cyan-600 hover:shadow-xl active:scale-95" 
-            onClick={()=>{                                       // adding filter button    
+            onClick={()=>{                                        
               const filteredlist = listofRestrautents.filter((res)=>res.info.avgRating>4.2);
               setfilteredRestraunts(filteredlist);
             }}>filter-top-restaurants</button>
@@ -60,11 +60,18 @@ const Body = () => {
       </div>
 
       <div className="flex flex-wrap justify-center">    
-          {
-            filteredRestraunts.map((restaurant)=>(<Link key={restaurant.info.id} to= {"/restaurants/"+restaurant.info.id}><RestaurantCard  resData={restaurant}/></Link>)) // container body
-          }
+        {
+          filteredRestraunts.map((restaurant) => (
+            <Link 
+              key={restaurant.info.id} 
+              to={"/restaurants/" + restaurant.info.id} 
+              className="hover:bg-gray-200 hover:text-blue-700 p-2 rounded transition-colors duration-300"
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
+          ))
+        }
       </div>
-
     </div>
   );
 
