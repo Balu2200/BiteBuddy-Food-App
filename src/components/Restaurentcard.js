@@ -24,4 +24,23 @@ const RestaurantCard = (props) => {
     );
 };
 
+// Higher order Component 
+
+// take input - rescard
+// output     - rescard - promoted
+
+
+export const withPromotedLabel = (RestaurantCard) =>{
+    return (props) =>{
+
+        const resData = props.resData;
+        const { cloudinaryImageId, name, avgRating, cuisines, costForTwo } = resData.info;
+
+        <div>
+            <label className="rounded-md bg-black text-white">Promoted</label>
+            <RestaurantCard {...props}/>
+        </div>
+    }
+}
+
 export default RestaurantCard;

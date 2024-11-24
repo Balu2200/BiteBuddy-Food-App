@@ -1,4 +1,4 @@
-import RestaurantCard from "./Restaurentcard";
+import RestaurantCard , {withPromotedLabel} from "./Restaurentcard";
 import {useState,useEffect} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listofRestrautents,setListOfRestrauents] = useState([]);
   const [filteredRestraunts,setfilteredRestraunts]= useState([]);
   const [searchtext,setSearchText] = useState("");
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => { fetchData(); }, []);  
   
@@ -67,7 +69,7 @@ const Body = () => {
               to={"/restaurants/" + restaurant.info.id} 
               className="hover:bg-gray-200 hover:text-blue-700 p-2 rounded transition-colors duration-300"
             >
-              <RestaurantCard resData={restaurant} />
+             {restaurant.info.promoted ? (<RestaurantCardPromoted  resData={restaurant} />) : (<RestaurantCard resData={restaurant}/>)}
             </Link>
           ))
         }
