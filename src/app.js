@@ -1,4 +1,4 @@
-import React, { lazy , Suspense} from "react";	
+import React, { lazy , Suspense, useEffect, useState} from "react";	
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider,Outlet} from "react-router-dom";
 import About from "./components/About";
@@ -16,6 +16,7 @@ import { Suspense } from "react";
 const Grocery = lazy( () => import("./components/Grocery") );
 
 const AppLayout = () => {
+
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             <Header />

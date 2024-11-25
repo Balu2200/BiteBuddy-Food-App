@@ -1,8 +1,9 @@
 import {LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useonlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/UserContext";
 
 
 const Header = () => {
@@ -11,6 +12,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     const onlineStatus = useonlineStatus();
+
+    const {loggedInUser} = useContext(userContext);
 
     const handleLoginClick = () =>{
         if(btnName === "Login"){
@@ -48,7 +51,10 @@ const Header = () => {
                     <li className="px-6 ">
                         <Link to = "/login"></Link>
                     </li>
+                    
                     <button className="px-2  border border-solid shadow-md transition-transform duration-300 ease-in-out hover:scale-105 bg-red-500 rounded-md" onClick={handleLoginClick}>{btnName}</button>
+
+                    <li className="px-4">User : {loggedInUser}</li>
                 </ul>
             </div>
         </div>
